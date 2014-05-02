@@ -42,6 +42,7 @@ namespace dout{
     Colors colors;
     std::map<unsigned const, std::string> colormap;
     std::map<unsigned const, std::string> labelmap;
+    std::map<unsigned const, std::string> bgcolormap;
 
     void operator=(Dout const&); // private assignment
 
@@ -58,16 +59,23 @@ namespace dout{
       labelmap.insert(std::make_pair(Flags::INFO,  "[INFO]      "));
       labelmap.insert(std::make_pair(Flags::STAT,  "[STATISTIC] "));
       labelmap.insert(std::make_pair(Flags::DEBUG, "[DEBUG]     "));
+
+      // add 10 to create colors for the background
+      colormap.insert(std::make_pair(Flags::ERROR, colorString(Colors::BLACK+10)));
+      colormap.insert(std::make_pair(Flags::WARN,  colorString(Colors::BLACK+10)));
+      colormap.insert(std::make_pair(Flags::INFO,  colorString(Colors::BLACK+10)));
+      colormap.insert(std::make_pair(Flags::STAT,  colorString(Colors::BLACK+10)));
+      colormap.insert(std::make_pair(Flags::DEBUG, colorString(Colors::BLACK+10)));
     }
 
     inline std::ostream& mkLabel(unsigned const flag, bool const useLabel){
         std::string label = useLabel ? labelmap[flag] : "";
-        return std::cerr << colormap[flag] << label;
+        return std::cerr << bgcolormap[flag] << colormap[flag] << label;
     }
 
     inline std::string colorString(unsigned const color){
       if(color==0) return "\033[0m";
-      assert(color >= 30 && color <=37);
+      assert(color >= 30 && color <=47);
 
       std::stringstream ss;
       ss << "\033[0;";
@@ -157,6 +165,11 @@ namespace dout{
     std::string getLabel(unsigned const flag){
       assert(labelmap.find(flag) != labelmap.end());
       return labelmap[flag];
+    }
+
+    inline void setBackgroundColor(unsigned const flag, unsigned const bgcolor){
+      assert(bgcolormap.find(flag) != bgcolormap.end());
+      bgcolormap[flag] = colorString(bgcolor+10);
     }
 
   };
