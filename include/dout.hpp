@@ -93,7 +93,7 @@ namespace dout{
       return instance;
     }
 
-    std::ostream& operator()(unsigned const urgency=Flags::INFO, bool const useLabel=true) {
+    inline std::ostream& operator()(unsigned const urgency=Flags::INFO, bool const useLabel=true) {
 
       // if the verbosity does not match any of the flags, don't print anything
       if(!(urgency & verbosity)){
@@ -128,41 +128,41 @@ namespace dout{
       return std::cout;
     }
 
-    unsigned addVerbosity(unsigned const newFlag){
+    inline unsigned addVerbosity(unsigned const newFlag){
       verbosity |= newFlag;
       return verbosity;
     }
 
-    unsigned removeVerbosity(unsigned const flag){
+    inline unsigned removeVerbosity(unsigned const flag){
       verbosity &= ~flag;
       return verbosity;
     }
 
-    unsigned setVerbosity(unsigned const newVerbosityFlags){
+    inline unsigned setVerbosity(unsigned const newVerbosityFlags){
       verbosity = newVerbosityFlags;
       return verbosity;
     }
 
-    unsigned getVerbosity(){
+    inline unsigned getVerbosity(){
       return verbosity;
     }
 
-    void setColor(unsigned const flag, unsigned const color){
+    inline void setColor(unsigned const flag, unsigned const color){
       assert(colormap.find(flag) != colormap.end());
       colormap[flag] = colorString(color);
     }
 
-    std::string getColor(unsigned const flag){
+    inline std::string getColor(unsigned const flag){
       assert(colormap.find(flag) != colormap.end());
       return colormap[flag];
     }
 
-    void setLabel(unsigned const flag, std::string const label){
+    inline void setLabel(unsigned const flag, std::string const label){
       assert(labelmap.find(flag) != labelmap.end());
       labelmap[flag] = label;
     }
 
-    std::string getLabel(unsigned const flag){
+    inline std::string getLabel(unsigned const flag){
       assert(labelmap.find(flag) != labelmap.end());
       return labelmap[flag];
     }
