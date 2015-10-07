@@ -1,5 +1,5 @@
 #include <iostream>
-#include "dout.hpp"
+#include "dout/dout.hpp"
 
 using dout::Flags;
 using dout::Colors;
