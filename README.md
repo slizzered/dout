@@ -6,20 +6,43 @@ in C++ programs. This is implemented as a header-only library.
 
 Installation
 ------------
-Currently, installation is only available from source.
+Currently, installation is available from source and as an ArchLinux AUR package.
 
 ###Dependencies
- - ```cmake``` >= 2.8.5
- - ```clang``` >= 3.4 or ```g++``` >= 4.8.2 (might work with lower versions, but needs C++0x features)
- - ```boost``` >= 1.55
+ - `cmake` >= 3.0.2
+ - `g++``` >= 4.8.2 or some other C++11 compatible compiler
 
-###Build:
+###Example Build:
 ```bash
 git clone https://github.com/slizzered/dout.git
 cd dout
-cmake .
-make
+mkdir build && cd build
+cmake ..
+make example
 ```
+
+### Install
+```bash
+git clone https://github.com/slizzered/dout.git
+cd dout
+mkdir build && cd build
+cmake ..
+make install
+```
+
+### Installation also available for ArchLinux AUR
+Package: `dout-git`
+
+
+###Use as a library
+*dout* ships a [CMake-Configfile](https://cmake.org/cmake/help/v3.4/manual/cmake-packages.7.html#config-file-packages), that can be used if your project is built with *CMake*. Depending on how/where *dout* is installed, there are 2 main possibilities to include it in your projects:
+
+####local install in a custom folder
+Assuming that you cloned the repository to `$HOME/dout`, you can instruct CMake to use that folder by adding `$HOME/dout/cmake` to your `CMAKE_PREFIX_PATH`. Inside your CMakeLists.txt, use findPackage(dout).
+
+####global install (e.g. using the ArchLinux AUR package)
+By default, the package will install the library files under `<prefix>/lib/dout` and the configfile at `<prefix>/lib/dout/cmake`. `<prefix>` should be set to some path that is looked for by CMake. For Unix installations, that would be `/usr`. Afterwards, all you have to do in your project is to call `findPackage(dout)` to add *dout* to your project.
+
 
 Usage
 -----
@@ -50,7 +73,7 @@ You can change the label text for each flag with
 
 ###Examples
 ```c++
-#include "dout.hpp"
+#include "dout/dout.hpp"
 using namespace dout;
 
 Dout dout = Dout::getInstance();
@@ -70,6 +93,6 @@ dout(Flags::WARN) << "This is a warning in red" << std::endl;
 
 License
 -------
-Copyright (c) 2014 Carlchristian Eckert  
+Copyright (c) 2014-2015 Carlchristian Eckert
 Licensed under the MIT license.  
 Free as in beer.
