@@ -21,27 +21,36 @@ cmake ..
 make example
 ```
 
-### Install
+### manual install
 ```bash
 git clone https://github.com/slizzered/dout.git
 cd dout
 mkdir build && cd build
-cmake ..
-make install
+cmake -DCMAKE_INSTALL_DIR=/usr ..
+sudo make install
 ```
 
 ### Installation also available for ArchLinux AUR
-Package: `dout-git`
+[Package `dout-git`](https://aur.archlinux.org/packages/dout-git/)
 
 
 ###Use as a library
-*dout* ships a [CMake-Configfile](https://cmake.org/cmake/help/v3.4/manual/cmake-packages.7.html#config-file-packages), that can be used if your project is built with *CMake*. Depending on how/where *dout* is installed, there are 2 main possibilities to include it in your projects:
+*dout* ships a
+[CMake-Configfile](https://cmake.org/cmake/help/v3.4/manual/cmake-packages.7.html#config-file-packages),
+that can be used if your project is built with *CMake*. Depending on how/where
+*dout* is installed, there are 2 easy ways to include it in your projects:
 
-####local install in a custom folder
-Assuming that you cloned the repository to `$HOME/dout`, you can instruct CMake to use that folder by adding `$HOME/dout/cmake` to your `CMAKE_PREFIX_PATH`. Inside your CMakeLists.txt, use findPackage(dout).
+####local install in a custom folder Assuming that you cloned the repository to
+`$HOME/dout`, you can instruct CMake to use that folder by adding
+`$HOME/dout/cmake` to your `CMAKE_PREFIX_PATH`. Inside your CMakeLists.txt, use
+findPackage(dout).
 
-####global install (e.g. using the ArchLinux AUR package)
-By default, the package will install the library files under `<prefix>/lib/dout` and the configfile at `<prefix>/lib/dout/cmake`. `<prefix>` should be set to some path that is looked for by CMake. For Unix installations, that would be `/usr`. Afterwards, all you have to do in your project is to call `findPackage(dout)` to add *dout* to your project.
+####global install (e.g. using the ArchLinux AUR package) By default, the
+package will install the library files under `<prefix>/lib/dout` and the
+configfile at `<prefix>/lib/dout/cmake`. `<prefix>` should be set to some path
+that is looked for by CMake. For Unix installations, that would be `/usr`.
+Afterwards, all you have to do in your project is to call `findPackage(dout)`
+to add *dout* to your project.
 
 
 Usage
