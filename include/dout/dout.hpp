@@ -39,12 +39,9 @@ namespace dout{
   class Dout{
 
     unsigned verbosity;
-    Colors colors;
     std::map<unsigned const, std::string> colormap;
     std::map<unsigned const, std::string> labelmap;
     std::map<unsigned const, std::string> bgcolormap;
-
-    void operator=(Dout const&); // private assignment
 
     // private constructor
     Dout() : verbosity(~0) {
@@ -85,7 +82,10 @@ namespace dout{
     }
 
 
-    public:
+  public:
+
+    Dout(const Dout&) = delete;
+    Dout& operator=(const Dout&) = delete;
 
     // Singleton
     static Dout& getInstance(){
