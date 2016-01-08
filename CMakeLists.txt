@@ -6,8 +6,8 @@ find_package(dout 1.0 REQUIRED PATHS ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 add_executable(example EXCLUDE_FROM_ALL examples/example1.cpp)
 
 install(
-  DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/dout"
-  DESTINATION "lib"
+  DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include"
+  DESTINATION "lib/dout"
   )
 
 install(

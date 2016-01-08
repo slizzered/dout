@@ -1,6 +1,6 @@
-file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/include/dout/version.hpp" dout_VERSION_MAJOR_HPP REGEX "#define DOUT_VERSION_MAJOR ")
-file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/include/dout/version.hpp"  dout_VERSION_MINOR_HPP REGEX "#define DOUT_VERSION_MINOR ")
-file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/include/dout/version.hpp"  dout_VERSION_PATCH_HPP REGEX "#define DOUT_VERSION_PATCH ")
+file(STRINGS "${CMAKE_CURRENT_LIST_DIR}/../include/dout/version.hpp" dout_VERSION_MAJOR_HPP REGEX "#define DOUT_VERSION_MAJOR ")
+file(STRINGS "${CMAKE_CURRENT_LIST_DIR}/../include/dout/version.hpp"  dout_VERSION_MINOR_HPP REGEX "#define DOUT_VERSION_MINOR ")
+file(STRINGS "${CMAKE_CURRENT_LIST_DIR}/../include/dout/version.hpp"  dout_VERSION_PATCH_HPP REGEX "#define DOUT_VERSION_PATCH ")
 
 string(REGEX MATCH "([0-9]+)" dout_VERSION_MAJOR  ${dout_VERSION_MAJOR_HPP})
 string(REGEX MATCH "([0-9]+)" dout_VERSION_MINOR  ${dout_VERSION_MINOR_HPP})
